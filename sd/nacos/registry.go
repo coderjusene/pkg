@@ -1,7 +1,6 @@
 package nacos
 
 import (
-	"execution-center/settings"
 	"github.com/cloudwego/hertz/pkg/app/server/registry"
 	"github.com/cloudwego/hertz/pkg/common/hlog"
 	"github.com/hertz-contrib/registry/nacos"
