@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-func LoadConfig(configPath, configType, configName) *viper.Viper {
+func LoadConfig(configPath, configType, configName string) *viper.Viper {
 	v := viper.New()
 
 	v.SetConfigType(configType)
