@@ -9,13 +9,13 @@ import (
 func LoadConfig(configPath, configType, configName) *viper.Viper {
 	v := viper.New()
 
-	v.SetConfigType("json")
-	v.SetConfigName("app")
-	v.AddConfigPath(".")
+	v.SetConfigType(configType)
+	v.SetConfigName(configName)
+	v.AddConfigPath(configPath)
 
 	if err := v.ReadInConfig(); err != nil {
 		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
-			fmt.Println("没有找到app.json,请确认在该目录下添加了app.json")
+			fmt.Println("没有找到app.json")
 			os.Exit(1)
 		}
 	}
