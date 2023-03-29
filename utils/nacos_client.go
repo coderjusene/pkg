@@ -71,7 +71,7 @@ func (nacos *NacosClient) Render2file(dataId, group string, tgt io.Writer, attr 
 	}
 }
 
-func (nacos *NacosClient) PublishConfig(dataId, group, content, t string) {
+func (nacos *NacosClient) PublishConfig(dataId, group, content string, t vo.ConfigType) {
 	nacos.client.PublishConfig(vo.ConfigParam{
 		DataId:  dataId,
 		Group:   group,
