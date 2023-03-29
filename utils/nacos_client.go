@@ -9,6 +9,7 @@ import (
 	"github.com/nacos-group/nacos-sdk-go/vo"
 	"github.com/spf13/cobra"
 	"os"
+	"io"
 	"text/template"
 )
 
