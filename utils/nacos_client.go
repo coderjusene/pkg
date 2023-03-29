@@ -1,17 +1,17 @@
 package utils
 
 import (
+	"fmt"
 	"github.com/nacos-group/nacos-sdk-go/clients"
 	"github.com/nacos-group/nacos-sdk-go/clients/config_client"
 	"github.com/nacos-group/nacos-sdk-go/common/constant"
 	"github.com/nacos-group/nacos-sdk-go/vo"
 	"github.com/spf13/cobra"
-	"io"
-	"text/template"
+	"os"
 )
 
 type NacosClient struct {
-	Client config_client.IConfigClient
+	client config_client.IConfigClient
 }
 
 func NewNacosClient(addr, namespace string, port uint64) *NacosClient {
@@ -43,6 +43,17 @@ func NewNacosClient(addr, namespace string, port uint64) *NacosClient {
 
 	cobra.CheckErr(err)
 
-	return &NacosClient{Client: configClient}
+	return &NacosClient{client: configClient}
+}
+
+// 获取配置信息
+func (nacos *NacosClient) GetConfig(dataId, group string) (content string) {
+	content, err := nacos.client.GetConfig(vo.ConfigParam{DataId: dataId, Group: group})
+
+	if err != nil {
+		fmt.Fprint(os.Stderr, err)
+	}
+
+	return
 }
 
