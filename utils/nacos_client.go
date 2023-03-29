@@ -11,7 +11,7 @@ import (
 )
 
 type NacosClient struct {
-	client config_client.IConfigClient
+	Client config_client.IConfigClient
 }
 
 func NewNacosClient(addr, namespace string, port uint64) *NacosClient {
@@ -43,6 +43,6 @@ func NewNacosClient(addr, namespace string, port uint64) *NacosClient {
 
 	cobra.CheckErr(err)
 
-	return &NacosClient{client: configClient}
+	return &NacosClient{Client: configClient}
 }
 
