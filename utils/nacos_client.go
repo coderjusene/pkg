@@ -57,3 +57,22 @@ func (nacos *NacosClient) GetConfig(dataId, group string) (content string) {
 	return
 }
 
+// 渲染文件
+func (nacos *NacosClient) Render2file(dataId, group string, tgt io.Writer, attr any) {
+	temp := nacos.GetConfig(dataId, group)
+	uuid, _ := uuid2.NewUUID()
+	if t, err := template.New(uuid.String()).Parse(temp); err != nil {
+		cobra.CheckErr(err)
+	} else {
+		t.Execute(tgt, attr)
+	}
+}
+
+func (nacos *NacosClient) PublishConfig(dataId, group, content, type string) {
+	nacos.client.PublishConfig(vo.ConfigParam{
+		DataId:  dataId,
+		Group:   group,
+		Content: content,
+		Type:    type,
+	})
+}
