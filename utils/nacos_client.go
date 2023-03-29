@@ -61,7 +61,7 @@ func (nacos *NacosClient) GetConfig(dataId, group string) (content string) {
 }
 
 // 渲染文件
-func (nacos *NacosClient) Render2file(dataId, group string, tgt io.Writer, attr any) {
+func (nacos *NacosClient) Render2file(dataId, group string, tgt io.Writer, attr interface{}) {
 	temp := nacos.GetConfig(dataId, group)
 	uuid, _ := uuid2.NewUUID()
 	if t, err := template.New(uuid.String()).Parse(temp); err != nil {
